@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: afitri <afitri@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/13 14:40:38 by marvin            #+#    #+#             */
-/*   Updated: 2025/06/13 14:40:38 by marvin           ###   ########.fr       */
+/*   Created: 2025/09/21 18:35:42 by afitri            #+#    #+#             */
+/*   Updated: 2025/09/21 18:35:43 by afitri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*read_line(int fd, char **stash)
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read <= 0)
 			break ;
-		buffer[bytes_read] = '\0';
+		buffer[] = '\0';
 		*stash = ft_join(*stash, buffer);
 	}
 	free(buffer);
@@ -40,7 +40,7 @@ char	*read_line(int fd, char **stash)
 	return (*stash);
 }
 
-char	*ft_line(char *buffer)
+char	*set_line(char *buffer)
 {
 	char	*line;
 	size_t	len;
@@ -58,13 +58,13 @@ char	*ft_line(char *buffer)
 	while (i < len)
 	{
 		line[i] = buffer[i];
-        i++;
+		i++;
 	}
 	line[len] = '\0';
 	return (line);
 }
 
-char	*ft_renew_buffer(char *buffer)
+char	*save_line(char *buffer)
 {
 	char	*new;
 	size_t	len;
@@ -90,9 +90,9 @@ char	*get_next_line(int fd)
 		return (NULL);
 	if (!read_line(fd, &stash[fd]))
 		return (NULL);
-	line = ft_line(stash[fd]);
+	line = set_line(stash[fd]);
 	if (!line)
 		return (NULL);
-	stash[fd] = ft_renew_buffer(stash[fd]);
+	stash[fd] = save_line(stash[fd]);
 	return (line);
 }
