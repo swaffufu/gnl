@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: afitri <afitri@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/09 17:42:46 by marvin            #+#    #+#             */
-/*   Updated: 2025/06/09 17:42:46 by marvin           ###   ########.fr       */
+/*   Created: 2025/09/21 14:50:18 by afitri            #+#    #+#             */
+/*   Updated: 2025/09/21 14:57:50 by afitri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*read_line(int fd, char **stash)
 	return (*stash);
 }
 
-char	*ft_line(char *buffer)
+char	*set_line(char *buffer)
 {
 	char	*line;
 	size_t	len;
@@ -58,13 +58,13 @@ char	*ft_line(char *buffer)
 	while (i < len)
 	{
 		line[i] = buffer[i];
-        i++;
+		i++;
 	}
 	line[len] = '\0';
 	return (line);
 }
 
-char	*ft_renew_buffer(char *buffer)
+char	*save_line(char *buffer)
 {
 	char	*new;
 	size_t	len;
@@ -90,9 +90,9 @@ char	*get_next_line(int fd)
 		return (NULL);
 	if (!read_line(fd, &stash))
 		return (NULL);
-	line = ft_line(stash);
+	line = set_line(stash);
 	if (!line)
 		return (NULL);
-	stash = ft_renew_buffer(stash);
+	stash = save_line(stash);
 	return (line);
 }
