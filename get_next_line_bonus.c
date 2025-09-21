@@ -28,7 +28,7 @@ char	*read_line(int fd, char **stash)
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read <= 0)
 			break ;
-		buffer[] = '\0';
+		buffer[BUFFER_SIZE + 1] = '\0';
 		*stash = ft_join(*stash, buffer);
 	}
 	free(buffer);
